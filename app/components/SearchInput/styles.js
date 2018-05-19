@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import * as dimens from 'assets/dimens';
 import red from 'material-ui/colors/red';
 import grey from 'material-ui/colors/grey';
 
 export const Wrapper = styled.div`
   text-align: center;
-  margin: 1rem;
-  height: 3rem;
+  height: ${dimens.defaultSpace * 3}px;
 `;
 
 export const TypedValue = styled.span`
@@ -44,7 +44,7 @@ export const styles = {
   searchInput: {
     borderRadius: 4,
     backgroundColor: grey[200],
-    padding: '10px 12px',
+    padding: dimens.defaultHalfSpace,
   },
   searchRoot: {
     padding: 0,

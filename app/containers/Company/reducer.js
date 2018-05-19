@@ -6,7 +6,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  isLoading: false,
+  isLoading: true,
 });
 
 function companyReducer(state = initialState, action) {
