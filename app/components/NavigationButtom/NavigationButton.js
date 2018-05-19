@@ -8,40 +8,24 @@ import BottomNavigation, {
 // ICONS
 import Silverware from 'mdi-material-ui/Silverware';
 import CurrencyUsd from 'mdi-material-ui/CurrencyUsd';
-import HumanGreeting from 'mdi-material-ui/HumanGreeting';
 
 import { styles } from './styles';
 
-class SimpleBottomNavigation extends React.Component {
-  state = {
-    value: 0,
-  };
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
-        showLabels
-        className={classes.root}
-      >
-        <BottomNavigationAction label="Cardápio" icon={<Silverware />} />
-        <BottomNavigationAction label="Comanda" icon={<CurrencyUsd />} />
-        <BottomNavigationAction label="Garçom" icon={<HumanGreeting />} />
-      </BottomNavigation>
-    );
-  }
-}
+const SimpleBottomNavigation = ({ context, classes, changeTableContext }) => (
+  <BottomNavigation
+    value={context}
+    onChange={(event, value) => changeTableContext(value)}
+    showLabels
+    className={classes.root}
+  >
+    <BottomNavigationAction label="Cardápio" icon={<Silverware />} />
+    <BottomNavigationAction label="Comanda" icon={<CurrencyUsd />} />
+  </BottomNavigation>);
 
 SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
+  changeTableContext: PropTypes.func,
+  context: PropTypes.number,
 };
 
 export default withStyles(styles)(SimpleBottomNavigation);

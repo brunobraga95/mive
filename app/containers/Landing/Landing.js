@@ -29,7 +29,6 @@ class Landing extends PureComponent {
     this.props.goToTable('lLfqdnain5twuR69KmYy', 1);
   }
   render() {
-    console.log(this.props);
     return (
       <Wrapper>
         {/* <div onClick={() => tableLogin('lLfqdnain5twuR69KmYy', 1)}>Acessar</div> */}

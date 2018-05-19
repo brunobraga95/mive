@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { fetchCompanyInfo } from 'containers/Company/actions';
 import { makeSelectCompany } from 'containers/Company/selectors';
+import { makeSelectTable } from 'containers/Table/selectors';
 import NavigationButton from 'components/NavigationButtom/NavigationButton';
 import Menu from 'components/Menu';
 import SearchInput from 'components/SearchInput';
 import Loading from 'react-loading-overlay';
-
+import { changeTableContext } from './actions';
 import { Wrapper } from './styles';
 
 class Table extends React.PureComponent {
@@ -25,7 +26,7 @@ class Table extends React.PureComponent {
         <Wrapper>
           <SearchInput />
           <Menu />
-          <NavigationButton />
+          <NavigationButton changeTableContext={this.props.changeTableContext} context={this.props.table.context} />
         </Wrapper>
       </Loading>
     );
@@ -36,15 +37,19 @@ Table.propTypes = {
   match: PropTypes.object,
   fetchCompany: PropTypes.func,
   company: PropTypes.object,
+  table: PropTypes.number,
+  changeTableContext: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   company: makeSelectCompany(),
+  table: makeSelectTable(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchCompany: (companyId) => dispatch(fetchCompanyInfo(companyId)),
+    changeTableContext: (context) => dispatch(changeTableContext(context)),
   };
 }
 
