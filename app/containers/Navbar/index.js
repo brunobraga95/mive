@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { withStyles } from 'material-ui/styles';
+import { makeSelectCompanyName } from 'containers/Company/selectors';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import Menu from 'mdi-material-ui/Menu';
 import Info from 'mdi-material-ui/Information';
 
 // Components
 import Information from 'components/Information';
 
 import { styles } from './defaultStyles';
-import { APP_NAME } from '../../assets/labels';
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -26,27 +27,24 @@ class NavBar extends Component {
   onToggleInfo = () => this.setState({ showInfo: !this.state.showInfo });
 
   render() {
-    const { classes } = this.props;
+    const { classes, companyName } = this.props;
     return (
       <div>
         {this.state.showInfo && <Information onClose={this.onToggleInfo} />}
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <Menu />
-            </IconButton>
             <Typography
               variant="title"
               color="inherit"
-              className={classes.flex}
+              className={classes.textContent}
             >
-              {APP_NAME}
+              {companyName}
             </Typography>
-            <Button onClick={this.onToggleInfo} color="inherit">
+            <Button
+              onClick={this.onToggleInfo}
+              color="inherit"
+              className={classes.infoContent}
+            >
               <Info />
             </Button>
           </Toolbar>
@@ -56,8 +54,13 @@ class NavBar extends Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  companyName: makeSelectCompanyName(),
+});
+
 NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  companyName: PropTypes.string,
 };
 
-export default withStyles(styles)(NavBar);
+export default connect(mapStateToProps)(withStyles(styles)(NavBar));
