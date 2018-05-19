@@ -7,8 +7,12 @@ let firestore = null;
 
 export const initializeFirestore = () => {
   if (loaded) return firestore;
-  firebase.initializeApp({
+  const { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID } = process.env;
 
+  firebase.initializeApp({
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    projectId: FIREBASE_PROJECT_ID,
   });
 
   firestore = firebase.firestore();

@@ -4,24 +4,17 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
-// import { startTable } from 'api/firestore/functions';
+import { push } from 'react-router-redux';
 import { defaultOneAndHalfSpace } from 'assets/dimens';
 import { fetchCompanyInfo } from 'containers/Company/actions';
 import { makeSelectCompany } from 'containers/Company/selectors';
 import { makeSelectTable } from 'containers/Table/selectors';
 import { addOrder } from 'api/firestore/functions';
-import MenuSections from 'components/MenuSections';
 import { tableLogin } from 'api/firestore/auth';
 import Typography from 'material-ui/Typography';
 
-// Components
 import QRCodeReader from 'components/QRCodeReader';
 
-//IMG
-
-// Initialize firestore
-
-// While there is no design, this component will be used to test the actions, and necessary server calls
 const Wrapper = styled.div``;
 
 const Container = styled.div`
@@ -32,8 +25,8 @@ const Container = styled.div`
 `;
 
 class Landing extends PureComponent {
-  componentDidMount() {
-    this.props.fetchCompany('lLfqdnain5twuR69KmYy');
+  goToTable = () => {
+    this.props.goToTable('lLfqdnain5twuR69KmYy', 1);
   }
   render() {
     console.log(this.props);
@@ -44,7 +37,8 @@ class Landing extends PureComponent {
         {/* <div onClick={() => addOrder([{ teste: 'adding order', value: 12 }])}>
           Add Order
         </div> */}
-        <Container>
+        <Container onClick={this.goToTable}>
+          click here to go menu
           <Typography variant="title" gutterBottom>
             Aponte para o QR code da mesa
           </Typography>
@@ -62,7 +56,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchCompany: (companyId) => dispatch(fetchCompanyInfo(companyId)),
+    goToTable: (companyId, tableNumber) => (dispatch(push(`company/${companyId}/table/${tableNumber}`)))
+    // fetchCompany: (companyId) => dispatch(fetchCompanyInfo(companyId)),
   };
 }
 

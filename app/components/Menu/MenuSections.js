@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { Wrapper, Section } from './styles';
-import { settings } from './settings';
 
 const mock = [
   {
@@ -25,7 +24,7 @@ const mock = [
 const MenuSections = () =>
    (
      <Wrapper>
-       <Slider {...settings}>
+       <Slider centerMode draggable arrows={false}>
          {mock.map(({ section, action }) => <Section onClick={action}>{section}</Section>)}
        </Slider>
      </Wrapper>
