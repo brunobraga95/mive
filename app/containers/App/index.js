@@ -24,7 +24,7 @@ import red from 'material-ui/colors/red';
 import Landing from 'containers/Landing/LoadableLanding';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Table from 'containers/Table/Loadable';
-import NavBar from 'components/Navbar/NavBar';
+import NavBar from 'containers/Navbar';
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
   palette: {
@@ -49,7 +49,10 @@ export default function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path="/company/:companyId/table/:tableNumber" component={Table} />
+          <Route
+            path="/company/:companyId/table/:tableNumber"
+            component={Table}
+          />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
