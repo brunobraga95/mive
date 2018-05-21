@@ -21,12 +21,15 @@ const mock = [
   },
 ];
 
-const MenuSections = () =>
-   (
-     <Wrapper>
-       <Slider centerMode draggable arrows={false}>
-         {mock.map(({ section, action }) => <Section onClick={action}>{section}</Section>)}
-       </Slider>
-     </Wrapper>
-    );
+const MenuSections = () => (
+  <Wrapper>
+    <Slider centerMode draggable arrows={false}>
+      {mock.map(({ section, action }) => (
+        <Section onClick={action} key={section}>
+          {section}
+        </Section>
+      ))}
+    </Slider>
+  </Wrapper>
+);
 export default MenuSections;
