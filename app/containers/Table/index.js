@@ -5,8 +5,13 @@ import { createStructuredSelector } from 'reselect';
 import { fetchCompanyInfo } from 'containers/Company/actions';
 import { makeSelectCompany } from 'containers/Company/selectors';
 import { makeSelectTable } from 'containers/Table/selectors';
+<<<<<<< HEAD
 import NavigationButton from 'components/NavigationButtom/NavigationButton';
 import Menu from 'containers/Menu';
+=======
+import NavigationButton from 'components/NavigationButtom';
+import Menu from 'components/Menu';
+>>>>>>> [CREATE] Bill component to display de Orders info
 import SearchInput from 'components/SearchInput';
 import Loading from 'react-loading-overlay';
 import { changeTableContext } from './actions';
@@ -19,14 +24,14 @@ class Table extends React.PureComponent {
   }
   render() {
     return (
-      <Loading
-        active={this.props.company.isLoading}
-        spinner
-      >
+      <Loading active={this.props.company.isLoading} spinner>
         <Wrapper>
           <SearchInput />
           <Menu />
-          <NavigationButton changeTableContext={this.props.changeTableContext} context={this.props.table.context} />
+          <NavigationButton
+            changeTableContext={this.props.changeTableContext}
+            context={this.props.table.context}
+          />
         </Wrapper>
       </Loading>
     );
