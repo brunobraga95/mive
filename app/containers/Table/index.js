@@ -5,7 +5,6 @@ import { createStructuredSelector } from 'reselect';
 import { fetchCompanyInfo } from 'containers/Company/actions';
 import { makeSelectCompany } from 'containers/Company/selectors';
 import { makeSelectTable } from 'containers/Table/selectors';
-import NavigationButton from 'components/NavigationButtom';
 import Menu from 'components/Menu';
 import SearchInput from 'components/SearchInput';
 import Loading from 'react-loading-overlay';
@@ -23,10 +22,6 @@ class Table extends React.PureComponent {
         <Wrapper>
           <SearchInput />
           <Menu />
-          <NavigationButton
-            changeTableContext={this.props.changeTableContext}
-            context={this.props.table.context}
-          />
         </Wrapper>
       </Loading>
     );

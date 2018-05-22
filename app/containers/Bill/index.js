@@ -1,17 +1,16 @@
 /* eslint-disable */
 import React, { PureComponent } from 'react';
-
+import PropTypes from 'prop-types';
 // Redux imports
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeGetOrders } from 'containers/Orders/selectors';
-
+import { makeGetOrders, makeGetAmount } from 'containers/Orders/selectors';
 import red from 'material-ui/colors/red';
 import blueGrey from 'material-ui/colors/blueGrey';
-import { items } from './fakeData';
 import BillItem from './BillItem';
 import Button from 'material-ui/Button';
-
+import CreditCardPlus from 'mdi-material-ui/CreditCardPlus';
+import Snackbar from 'material-ui/Snackbar';
 import { convertToReal } from '../../utils/convertToReal';
 
 import {
@@ -26,21 +25,10 @@ import {
   AmountText,
 } from './styles';
 
-import Cards from 'mdi-material-ui/Cards';
-
 export class Bill extends PureComponent {
-  handleAmount = (items, cover = 0) =>
-    items.reduce((finalPrice, { price, quantity }) => {
-      return finalPrice + price * quantity;
-    }, cover);
-
-  handleOrderBill = () => {
-    // This function must send a message to the waiter ordering the bill
-    alert('GIMME THE BILL!!');
-  };
-
   render() {
-    if (items.length)
+    const { orders, amount } = this.props;
+    if (orders.items.length)
       return (
         <Wrapper>
           {console.log(this.props.orders)}
@@ -50,7 +38,7 @@ export class Bill extends PureComponent {
             <PriceCol>Preço</PriceCol>
           </Header>
           <BillContainer>
-            {items.map((item) => (
+            {orders.items.map((item) => (
               <BillItem
                 key={item.name}
                 name={item.name}
@@ -60,16 +48,15 @@ export class Bill extends PureComponent {
             ))}
           </BillContainer>
           <CenterBlock>
-            <AmountText>
-              Total: {convertToReal(this.handleAmount(items))}
-            </AmountText>
+            <AmountText>Total: {convertToReal(amount)}</AmountText>
             <Button
-              onClick={this.handleOrderBill}
-              variant="fab"
-              color="primary"
+              color="secondary"
+              variant="raised"
+              size="small"
               component="span"
             >
-              <Cards />
+              <CreditCardPlus />
+              Pedir a conta
             </Button>
           </CenterBlock>
         </Wrapper>
@@ -78,8 +65,14 @@ export class Bill extends PureComponent {
   }
 }
 
+Bill.propTypes = {
+  orders: PropTypes.object,
+  amount: PropTypes.number,
+};
+
 const mapStateToProps = createStructuredSelector({
   orders: makeGetOrders(),
+  amount: makeGetAmount(),
 });
 
 export default connect(mapStateToProps)(Bill);
