@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import BottomNavigation, {
@@ -12,29 +12,41 @@ import CurrencyUsd from 'mdi-material-ui/CurrencyUsd';
 
 import { styles, BottomWrapper, ButtonContainer } from './styles';
 
-const SimpleBottomNavigation = ({ context, classes, changeTableContext }) => (
-  <BottomWrapper>
-    <ButtonContainer>
-      <Button variant="raised" color="primary">
-        <HumanGreeting /> Chamar garçom
-      </Button>{' '}
-    </ButtonContainer>
-    <BottomNavigation
-      value={context}
-      onChange={(event, value) => changeTableContext(value)}
-      showLabels
-      className={classes.root}
-    >
-      <BottomNavigationAction label="Cardápio" icon={<Silverware />} />
-      <BottomNavigationAction label="Comanda" icon={<CurrencyUsd />} />
-    </BottomNavigation>
-  </BottomWrapper>
-);
+class SimpleBottomNavigation extends Component {
+  state = {
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { value } = this.state;
+    return (
+      <BottomWrapper>
+        <ButtonContainer>
+          <Button variant="raised" color="primary">
+            <HumanGreeting /> Chamar garçom
+          </Button>{' '}
+        </ButtonContainer>
+        <BottomNavigation
+          value={value}
+          onChange={this.handleChange}
+          showLabels
+          className={classes.root}
+        >
+          <BottomNavigationAction label="Cardápio" icon={<Silverware />} />
+          <BottomNavigationAction label="Comanda" icon={<CurrencyUsd />} />
+        </BottomNavigation>
+      </BottomWrapper>
+    );
+  }
+}
 
 SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
-  changeTableContext: PropTypes.func,
-  context: PropTypes.number,
 };
 
 export default withStyles(styles)(SimpleBottomNavigation);

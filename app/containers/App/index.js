@@ -14,11 +14,20 @@
 //  NPM imports
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+<<<<<<< HEAD
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import grey from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
+=======
+import CssBaseline from 'material-ui/CssBaseline';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import NavigationButton from 'components/NavigationButtom';
+import blueGrey from 'material-ui/colors/blueGrey';
+import grey from 'material-ui/colors/pink';
+import red from 'material-ui/colors/red';
+>>>>>>> [CHANGE] navigation to /app
 
 // Components
 import Landing from 'containers/Landing/LoadableLanding';
@@ -26,23 +35,18 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Table from 'containers/Table/Loadable';
 import Bill from 'containers/Bill/Loadable';
 import NavBar from 'containers/Navbar';
-// We try our best to provide a great default value.
+
 const theme = createMuiTheme({
   palette: {
     primary: red,
     secondary: blueGrey,
     error: grey,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
 });
 
-export default function App() {
+export default function App(props) {
   return (
     <MuiThemeProvider theme={theme}>
       <div>
@@ -61,6 +65,7 @@ export default function App() {
           />
           <Route component={NotFoundPage} />
         </Switch>
+        <NavigationButton />
       </div>
     </MuiThemeProvider>
   );

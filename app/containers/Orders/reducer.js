@@ -5,14 +5,21 @@ import { FETCH_ORDERS } from './constants';
 const initialState = fromJS({
   isLoading: false,
   items: [
-    { name: 'Cerveja Itaipava', quantity: 3, price: 3.49 },
-    { name: 'Torresmo', quantity: 1, price: 8.0 },
-    { name: 'Caipirinha de Limão', quantity: 2, price: 11.0 },
-    { name: 'Frango a passarinho', quantity: 1, price: 18.0 },
-    { name: 'Cerveja Brahma', quantity: 12, price: 5.99 },
-    { name: 'Chocolate Laka', quantity: 1, price: 5.0 },
-    { name: 'Paçoca', quantity: 1, price: 1.99 },
-    { name: 'Batata Frita', quantity: 1, price: 19.99 },
+    { name: 'couve', price: 5.0, quantity: 8 },
+    { name: 'skol', price: 8.0, quantity: 8 },
+    { name: 'vafdsagem', price: 4.0, quantity: 8 },
+    { name: 'cousve', price: 3.0, quantity: 8 },
+    { name: 'skosl', price: 7.0, quantity: 8 },
+    { name: 'vagcem', price: 5.0, quantity: 8 },
+    { name: 'coudve', price: 6.0, quantity: 8 },
+    { name: 'skofl', price: 2.0, quantity: 8 },
+    { name: 'vagefdaem', price: 12.0, quantity: 8 },
+    { name: 'couvce', price: 11.0, quantity: 8 },
+    { name: 'skodl', price: 21.0, quantity: 8 },
+    { name: 'vagefdsaem', price: 22.0, quantity: 8 },
+    { name: 'couave', price: 23.0, quantity: 8 },
+    { name: 'skocl', price: 12.0, quantity: 8 },
+    { name: 'vageafsadm', price: 21.0, quantity: 8 },
   ],
 });
 
@@ -24,5 +31,4 @@ function ordersReducer(state = initialState, action) {
       return state;
   }
 }
-
 export default ordersReducer;
