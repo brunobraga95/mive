@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as dimens from 'assets/dimens';
-import red from 'material-ui/colors/red';
-import grey from 'material-ui/colors/grey';
+import red from '@material-ui/core/colors/red';
+import grey from '@material-ui/core/colors/grey';
 
 export const Wrapper = styled.div`
   text-align: center;

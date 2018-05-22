@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import BottomNavigation, {
-  BottomNavigationAction,
-} from 'material-ui/BottomNavigation';
-import Button from 'material-ui/Button';
-// ICONS
+import { withStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Button from '@material-ui/core/Button';
 import HumanGreeting from 'mdi-material-ui/HumanGreeting';
 import Silverware from 'mdi-material-ui/Silverware';
 import CurrencyUsd from 'mdi-material-ui/CurrencyUsd';
-
 import { styles, BottomWrapper, ButtonContainer } from './styles';
 
 const SimpleBottomNavigation = ({ context, classes, changeTableContext }) => (

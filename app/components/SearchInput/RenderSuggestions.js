@@ -1,7 +1,7 @@
 import React from 'react';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import { MenuItem } from 'material-ui/Menu';
+import { MenuItem } from '@material-ui/core/Menu';
 
 import { TypedValue, NoTypedValue } from './styles';
 

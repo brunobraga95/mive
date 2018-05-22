@@ -14,11 +14,11 @@
 //  NPM imports
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import CssBaseline from 'material-ui/CssBaseline';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blueGrey from 'material-ui/colors/blueGrey';
-import grey from 'material-ui/colors/pink';
-import red from 'material-ui/colors/red';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import grey from '@material-ui/core/colors/pink';
+import red from '@material-ui/core/colors/red';
 
 // Components
 import Landing from 'containers/Landing/LoadableLanding';

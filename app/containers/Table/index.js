@@ -37,7 +37,7 @@ Table.propTypes = {
   match: PropTypes.object,
   fetchCompany: PropTypes.func,
   company: PropTypes.object,
-  table: PropTypes.number,
+  table: PropTypes.object,
   changeTableContext: PropTypes.func,
 };
 

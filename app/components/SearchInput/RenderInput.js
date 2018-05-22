@@ -1,6 +1,6 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import { InputAdornment } from 'material-ui/Input';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Magnify from 'mdi-material-ui/Magnify';
 import { IconContainer } from './styles';
 
