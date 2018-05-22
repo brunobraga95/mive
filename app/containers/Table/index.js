@@ -6,7 +6,7 @@ import { fetchCompanyInfo } from 'containers/Company/actions';
 import { makeSelectCompany } from 'containers/Company/selectors';
 import { makeSelectTable } from 'containers/Table/selectors';
 import NavigationButton from 'components/NavigationButtom/NavigationButton';
-import Menu from 'components/Menu';
+import Menu from 'containers/Menu';
 import SearchInput from 'components/SearchInput';
 import Loading from 'react-loading-overlay';
 import { changeTableContext } from './actions';
