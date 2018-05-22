@@ -12,5 +12,7 @@ const handleAmount = (items, cover = 0) =>
     const itemTotalPrice = price * quantity;
     return finalPrice + itemTotalPrice;
   }, cover);
+// TODO
+// Implementation to set a "cover" tax  per people
 
 export { makeGetOrders, makeGetAmount };
