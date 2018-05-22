@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import blueGrey from 'material-ui/colors/blueGrey';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 import * as dimens from 'assets/dimens';
 
 // TODO remove deep selectors on a better opportunity

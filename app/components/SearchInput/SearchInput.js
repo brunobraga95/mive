@@ -42,6 +42,7 @@ export class SearchInput extends React.PureComponent {
   };
 
   render() {
+    console.log(Autosuggest);
     return (
       <Wrapper>
         <Autosuggest

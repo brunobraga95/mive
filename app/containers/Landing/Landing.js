@@ -11,7 +11,7 @@ import { makeSelectCompany } from 'containers/Company/selectors';
 import { makeSelectTable } from 'containers/Table/selectors';
 import { addOrder } from 'api/firestore/functions';
 import { tableLogin } from 'api/firestore/auth';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 import QRCodeReader from 'components/QRCodeReader';
 

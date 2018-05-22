@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 // Style
-import grey from 'material-ui/colors/grey';
+import grey from '@material-ui/core/colors/grey';
 // Components
 import InfoSlider from './InfoSlider';
 
