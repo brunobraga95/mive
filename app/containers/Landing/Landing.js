@@ -38,7 +38,6 @@ class Landing extends PureComponent {
           <Typography variant="title" gutterBottom>
             Aponte para o QR code da mesa
           </Typography>
-          <img src="../../images/qr-code.png" alt="qr code icon" />
         </Container>
       </Wrapper>
     );
