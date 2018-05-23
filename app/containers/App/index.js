@@ -46,7 +46,7 @@ const theme = createMuiTheme({
   },
 });
 
-export default function App(props) {
+export default function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <div>
@@ -65,7 +65,9 @@ export default function App(props) {
           />
           <Route component={NotFoundPage} />
         </Switch>
-        <NavigationButton />
+        {/* I did not like to use the window.location.
+        But, according with the documentation, it is not possible to use the props.match.params the route component */}
+        {window.location.pathname.includes('company') && <NavigationButton />}
       </div>
     </MuiThemeProvider>
   );
