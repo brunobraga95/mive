@@ -14,20 +14,11 @@
 //  NPM imports
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-<<<<<<< HEAD
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import grey from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
-=======
-import CssBaseline from 'material-ui/CssBaseline';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import NavigationButton from 'components/NavigationButtom';
-import blueGrey from 'material-ui/colors/blueGrey';
-import grey from 'material-ui/colors/pink';
-import red from 'material-ui/colors/red';
->>>>>>> [CHANGE] navigation to /app
 
 // Components
 import Landing from 'containers/Landing/LoadableLanding';
@@ -35,6 +26,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Table from 'containers/Table/Loadable';
 import Bill from 'containers/Bill/Loadable';
 import NavBar from 'containers/Navbar';
+import NavigationButton from 'components/NavigationButtom';
 
 const theme = createMuiTheme({
   palette: {

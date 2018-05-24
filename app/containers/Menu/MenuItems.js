@@ -3,31 +3,32 @@ import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import { FoodName,
+import convertToReal from '../../utils/convertToReal';
+import {
+  FoodName,
   IngredientsList,
   FoodTextInfoWrapper,
   FoodDescriptionWrapper,
   FoodPicture,
   PriceWrapper,
-  FoodPictureWrapper } from './styles';
+  FoodPictureWrapper,
+} from './styles';
 
 const MenuItems = ({ menu, section, isLoading }) => (
   <List component="nav">
-    {!isLoading && (menu[section].dishes).map((item, i) =>
-      (
-        <div key={item.name} >
+    {!isLoading &&
+      menu[section].dishes.map((item, i) => (
+        <div key={item.name}>
           <ListItem button>
             <FoodDescriptionWrapper>
               <FoodTextInfoWrapper>
-                <FoodName>
-                  {item.name}
-                </FoodName>
+                <FoodName>{item.name}</FoodName>
                 <IngredientsList>
-                  {item.ingredients.reduce((ingredient, curr) => `${curr}, ${ingredient}`)}
+                  {item.ingredients.reduce(
+                    (ingredient, curr) => `${curr}, ${ingredient}`
+                  )}
                 </IngredientsList>
-                <PriceWrapper>
-                  {`R$ ${item.price},00`}
-                </PriceWrapper>
+                <PriceWrapper>{convertToReal(item.price)}</PriceWrapper>
               </FoodTextInfoWrapper>
               <FoodPictureWrapper>
                 <FoodPicture src={item.picture} />
@@ -35,7 +36,8 @@ const MenuItems = ({ menu, section, isLoading }) => (
             </FoodDescriptionWrapper>
           </ListItem>
           {i !== menu[section].dishes.length - 1 && <Divider />}
-        </div>))}
+        </div>
+      ))}
   </List>
 );
 

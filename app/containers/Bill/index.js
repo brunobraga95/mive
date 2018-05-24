@@ -4,25 +4,31 @@ import PropTypes from 'prop-types';
 // Redux imports
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeGetOrders, makeGetAmount } from 'containers/Orders/selectors';
+import {
+  makeSelectOrders,
+  makeSelectAmount,
+} from 'containers/Orders/selectors';
 import red from 'material-ui/colors/red';
 import blueGrey from 'material-ui/colors/blueGrey';
 import BillItem from './BillItem';
-import Button from 'material-ui/Button';
+import ButtonBase from 'material-ui/ButtonBase';
 import CreditCardPlus from 'mdi-material-ui/CreditCardPlus';
-import Snackbar from 'material-ui/Snackbar';
 import { convertToReal } from '../../utils/convertToReal';
+import Slide from '@material-ui/core/Slide';
 
 import {
   Wrapper,
   BillContainer,
   CenterBlock,
+  RightBlock,
   ItemCol,
   Header,
   QuantityCol,
   PriceCol,
   NoItem,
   AmountText,
+  PaymentButton,
+  delay,
 } from './styles';
 
 export class Bill extends PureComponent {
@@ -31,7 +37,6 @@ export class Bill extends PureComponent {
     if (orders.items.length)
       return (
         <Wrapper>
-          {console.log(this.props.orders)}
           <Header>
             <QuantityCol>Qtd</QuantityCol>
             <ItemCol>Item</ItemCol>
@@ -49,16 +54,23 @@ export class Bill extends PureComponent {
           </BillContainer>
           <CenterBlock>
             <AmountText>Total: {convertToReal(amount)}</AmountText>
-            <Button
-              color="secondary"
-              variant="raised"
-              size="small"
-              component="span"
-            >
-              <CreditCardPlus />
-              Pedir a conta
-            </Button>
           </CenterBlock>
+          <RightBlock>
+            <Slide
+              style={delay}
+              direction="left"
+              in={true}
+              mountOnEnter
+              unmountOnExit
+            >
+              <ButtonBase focusRipple>
+                <PaymentButton>
+                  <CreditCardPlus />
+                  PEDIR A CONTA
+                </PaymentButton>
+              </ButtonBase>
+            </Slide>
+          </RightBlock>
         </Wrapper>
       );
     return <NoItem>Nenhum pedido feito até o momento</NoItem>;
@@ -71,8 +83,8 @@ Bill.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  orders: makeGetOrders(),
-  amount: makeGetAmount(),
+  orders: makeSelectOrders(),
+  amount: makeSelectAmount(),
 });
 
 export default connect(mapStateToProps)(Bill);

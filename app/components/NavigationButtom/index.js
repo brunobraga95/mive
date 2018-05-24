@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import BottomNavigation, {
-  BottomNavigationAction,
-} from 'material-ui/BottomNavigation';
-import Button from 'material-ui/Button';
+import { changeTableContext } from 'containers/Table/actions';
+import { makeSelectTable } from 'containers/Table/selectors';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Button from '@material-ui/core/Button';
 // ICONS
 import HumanGreeting from 'mdi-material-ui/HumanGreeting';
 import Silverware from 'mdi-material-ui/Silverware';
@@ -12,41 +15,41 @@ import CurrencyUsd from 'mdi-material-ui/CurrencyUsd';
 
 import { styles, BottomWrapper, ButtonContainer } from './styles';
 
-class SimpleBottomNavigation extends Component {
-  state = {
-    value: 0,
-  };
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-    return (
-      <BottomWrapper>
-        <ButtonContainer>
-          <Button variant="raised" color="primary">
-            <HumanGreeting /> Chamar garçom
-          </Button>{' '}
-        </ButtonContainer>
-        <BottomNavigation
-          value={value}
-          onChange={this.handleChange}
-          showLabels
-          className={classes.root}
-        >
-          <BottomNavigationAction label="Cardápio" icon={<Silverware />} />
-          <BottomNavigationAction label="Comanda" icon={<CurrencyUsd />} />
-        </BottomNavigation>
-      </BottomWrapper>
-    );
-  }
-}
+const SimpleBottomNavigation = ({ classes, table, onChangeTableContext }) => (
+  <BottomWrapper>
+    <ButtonContainer>
+      <Button variant="raised" color="primary">
+        <HumanGreeting /> Chamar garçom
+      </Button>{' '}
+    </ButtonContainer>
+    <BottomNavigation
+      value={table.context}
+      onChange={(event, value) => onChangeTableContext(value)}
+      showLabels
+      className={classes.root}
+    >
+      <BottomNavigationAction label="Cardápio" icon={<Silverware />} />
+      <BottomNavigationAction label="Comanda" icon={<CurrencyUsd />} />
+    </BottomNavigation>
+  </BottomWrapper>
+);
 
 SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
+  table: PropTypes.object,
+  onChangeTableContext: PropTypes.func,
 };
 
-export default withStyles(styles)(SimpleBottomNavigation);
+const mapStateToProps = createStructuredSelector({
+  table: makeSelectTable(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onChangeTableContext: (context) => dispatch(changeTableContext(context)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(SimpleBottomNavigation)
+);
