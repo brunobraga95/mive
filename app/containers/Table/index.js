@@ -8,6 +8,7 @@ import { makeSelectTable } from 'containers/Table/selectors';
 import Menu from 'components/Menu';
 import SearchInput from 'components/SearchInput';
 import Loading from 'react-loading-overlay';
+import Bill from 'containers/Bill';
 import { changeTableContext } from './actions';
 import { Wrapper } from './styles';
 
@@ -17,14 +18,18 @@ class Table extends React.PureComponent {
     this.props.fetchCompany(companyId);
   }
   render() {
-    return (
-      <Loading active={this.props.company.isLoading} spinner>
-        <Wrapper>
-          <SearchInput />
-          <Menu />
-        </Wrapper>
-      </Loading>
-    );
+    const { table } = this.props;
+    if (!table.context) {
+      return (
+        <Loading active={this.props.company.isLoading} spinner>
+          <Wrapper>
+            <SearchInput />
+            <Menu />
+          </Wrapper>
+        </Loading>
+      );
+    }
+    return <Bill />;
   }
 }
 
@@ -33,7 +38,6 @@ Table.propTypes = {
   fetchCompany: PropTypes.func,
   company: PropTypes.object,
   table: PropTypes.object,
-  changeTableContext: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
