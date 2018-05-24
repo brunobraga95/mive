@@ -3,7 +3,7 @@ import { FETCH_ORDERS } from './constants';
 
 let fetch;
 
-export default function createTableListener(dispatch) {
+export default function createOrdersListener(dispatch) {
   fetch = (querySnapshot) => {
     dispatch({
       type: FETCH_ORDERS,

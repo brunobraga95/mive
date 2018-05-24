@@ -24,19 +24,16 @@ import red from '@material-ui/core/colors/red';
 import Landing from 'containers/Landing/LoadableLanding';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Table from 'containers/Table/Loadable';
+import Bill from 'containers/Bill/Loadable';
 import NavBar from 'containers/Navbar';
-// We try our best to provide a great default value.
+import NavigationButton from 'components/NavigationButtom';
+
 const theme = createMuiTheme({
   palette: {
     primary: red,
     secondary: blueGrey,
     error: grey,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
 });
@@ -50,11 +47,19 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route
+            exact
             path="/company/:companyId/table/:tableNumber"
             component={Table}
           />
+          <Route
+            path="/company/:companyId/table/:tableNumber/bill-info"
+            component={Bill}
+          />
           <Route component={NotFoundPage} />
         </Switch>
+        {/* I did not like to use the window.location.
+        But, according with the documentation, it is not possible to use the props.match.params the route component */}
+        {window.location.pathname.includes('company') && <NavigationButton />}
       </div>
     </MuiThemeProvider>
   );

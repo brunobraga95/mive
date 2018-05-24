@@ -9,6 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Info from 'mdi-material-ui/Information';
+import Slide from '@material-ui/core/Slide';
 
 // Components
 import Information from 'components/Information';
@@ -28,9 +29,13 @@ class NavBar extends Component {
 
   render() {
     const { classes, companyName } = this.props;
+    const { showInfo } = this.state;
     return (
       <div>
-        {this.state.showInfo && <Information onClose={this.onToggleInfo} />}
+        <Slide direction="up" in={showInfo} mountOnEnter unmountOnExit>
+          <Information onClose={this.onToggleInfo} />
+        </Slide>
+
         <AppBar position="static">
           <Toolbar>
             <Typography
