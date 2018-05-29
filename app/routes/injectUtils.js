@@ -1,7 +1,6 @@
 import tableReducer from 'containers/Table/reducer';
 import ordersReducer from 'containers/Orders/reducer';
 
-
 export function injectListenersReducers(injectReducer) {
   injectReducer('table', tableReducer);
   injectReducer('orders', ordersReducer);
@@ -13,9 +12,8 @@ export function injectListeners(injectFirestoreListener) {
     import(/* webpackChunkName: "firestore" */ 'containers/Orders/firestore-listener'),
   ]);
 
-  return importModules
-    .then(([createTableListener, createOrdersListener]) => {
-      injectFirestoreListener('table', createTableListener.default);
-      injectFirestoreListener('orders', createOrdersListener.default);
-    });
+  return importModules.then(([createTableListener, createOrdersListener]) => {
+    injectFirestoreListener('table', createTableListener.default);
+    injectFirestoreListener('orders', createOrdersListener.default);
+  });
 }

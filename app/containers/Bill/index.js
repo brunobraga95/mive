@@ -15,7 +15,7 @@ import ButtonBase from 'material-ui/ButtonBase';
 import CreditCardPlus from 'mdi-material-ui/CreditCardPlus';
 import { convertToReal } from '../../utils/convertToReal';
 import Slide from '@material-ui/core/Slide';
-
+import Divider from '@material-ui/core/Divider';
 import {
   Wrapper,
   BillContainer,
@@ -29,6 +29,7 @@ import {
   AmountText,
   PaymentButton,
   delay,
+  Padding,
 } from './styles';
 
 export class Bill extends PureComponent {
@@ -37,11 +38,15 @@ export class Bill extends PureComponent {
     if (orders.items.length)
       return (
         <Wrapper>
+          {console.log(orders)}
           <Header>
             <QuantityCol>Qtd</QuantityCol>
             <ItemCol>Item</ItemCol>
             <PriceCol>Preço</PriceCol>
           </Header>
+          <Padding>
+            <Divider />
+          </Padding>
           <BillContainer>
             {orders.items.map((item) => (
               <BillItem

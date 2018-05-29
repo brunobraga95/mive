@@ -1,24 +1,55 @@
 import { createSelector } from 'reselect';
+import slugify from '../../utils/slugify';
 
 const selectMenu = (state) => state.get('menu').toJS();
 
-const makeSelectMenu = () => createSelector(
-  selectMenu,
-  (menu) => menu.menu
-);
+const makeSelectSearch = () =>
+  createSelector(selectMenu, (menu) => menu.search);
 
-const makeSelectIsLoading = () => createSelector(
-    selectMenu,
-    (menu) => menu.isLoading
+const makeSelectMenu = () => createSelector(selectMenu, (menu) => menu.menu);
+
+const makeSelectKeys = () =>
+  createSelector(makeSelectMenu(), (menu) => Object.keys(menu));
+
+const makeSelectAllItems = () =>
+  createSelector(makeSelectMenu(), makeSelectKeys(), (menu, keys) => {
+    let allItems = [];
+    keys.forEach(
+      (section) => (allItems = [...allItems, ...menu[section].dishes])
+    );
+    return allItems;
+  });
+
+const makeFilteredMenu = () =>
+  createSelector(
+    makeSelectAllItems(),
+    makeSelectSearch(),
+    makeSelectIsLoading(),
+
+    (allItems, search, isLoading) =>
+      !isLoading &&
+      allItems.filter((item) => slugify(item.name).includes(slugify(search)))
   );
 
-const makeSelectCurrentSection = () => createSelector(
-    selectMenu,
-    (menu) => menu.section
+const makeSelectIsLoading = () =>
+  createSelector(selectMenu, (menu) => menu.isLoading);
+
+const makeSelectCurrentSection = () =>
+  createSelector(selectMenu, (menu) => menu.section);
+
+const makeSelectSectionItems = () =>
+  createSelector(
+    makeSelectMenu(),
+    makeSelectCurrentSection(),
+    (menu, section) => menu[section]
   );
 
 export {
-  makeSelectMenu,
   makeSelectCurrentSection,
   makeSelectIsLoading,
+  makeSelectSearch,
+  makeFilteredMenu,
+  makeSelectSectionItems,
+  makeSelectKeys,
+  makeSelectAllItems,
 };

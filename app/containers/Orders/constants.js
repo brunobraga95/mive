@@ -1,1 +1,1 @@
-export const FETCH_ORDERS = 'containers/table/fetch-orders';
+export const FETCH_ORDERS = 'containers/orders/fetch-orders';

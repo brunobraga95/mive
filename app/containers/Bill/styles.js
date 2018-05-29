@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import * as dimens from 'assets/dimens';
-import blueGrey from 'material-ui/colors/blueGrey';
 import grey from 'material-ui/colors/grey';
 import red from 'material-ui/colors/red';
 
@@ -8,13 +7,17 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
+export const Padding = styled.div`
+  margin: 0 ${dimens.defaultSpace}px;
+`;
+
 export const ItemContainer = styled.div`
-  font-weight: bold;
-  color: ${blueGrey[800]};
-  font-size: 14px;
+  font-family: 'Roboto';
+  font-weight: 500;
   padding: ${dimens.defaultSpace}px;
+  color: ${grey[900]};
+  font-size: 14px;
   display: flex;
-  margin: 0px ${dimens.defaultSpace}px;
   justify-content: space-between;
   text-align: center;
   &:nth-child(even) {
@@ -29,10 +32,9 @@ export const Header = ItemContainer.extend`
   &:active {
     background: none;
   }
+  color: ${grey[600]};
   border: none;
   font-size: 16px;
-  margin: 0 ${dimens.defaultSpace}px;
-  border-bottom: 1px solid ${grey[200]};
 `;
 
 export const QuantityCol = styled.div`
@@ -66,11 +68,13 @@ export const NoItem = styled.h4`
   text-align: center;
   left: auto;
   margin-top: 40%;
-  color: ${blueGrey[800]};
+  color: ${grey[900]};
 `;
 
 export const AmountText = styled.h4`
-  color: ${blueGrey[800]};
+  color: ${grey[900]};
+  font-family: 'Roboto';
+  font-weight: 500;
 `;
 
 export const PaymentButton = styled.span`

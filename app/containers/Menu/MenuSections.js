@@ -1,35 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import { Wrapper, Section } from './styles';
 
 const mock = [
   {
-    section: 'bebidas',
-    action: () => {},
-  },
-  {
-    section: 'bebidas alcoolicas',
-    action: () => {},
-  },
-  {
     section: 'porcoes',
-    action: () => {},
   },
   {
-    section: 'lanches',
-    action: () => {},
+    section: 'bebidas',
   },
 ];
 
-const MenuSections = () => (
+const MenuSections = (props) => (
   <Wrapper>
     <Slider centerMode draggable arrows={false}>
-      {mock.map(({ section, action }) => (
-        <Section key={`section-${section}`} onClick={action}>
+      {mock.map(({ section }) => (
+        <Section
+          decorated={props.section === section}
+          onClick={() => props.changeSection(section)}
+          key={`section-${section}`}
+        >
           {section}
         </Section>
       ))}
     </Slider>
   </Wrapper>
 );
+
+MenuSections.propTypes = {
+  section: PropTypes.string,
+};
+
 export default MenuSections;

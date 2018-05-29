@@ -4,10 +4,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Magnify from 'mdi-material-ui/Magnify';
 import { IconContainer } from './styles';
 
-export default function renderInput(inputProps) {
-  const { classes, ref, ...other } = inputProps;
+export default function RenderInput(inputProps) {
+  const { classes, ref, onChange, ...other } = inputProps;
   return (
     <TextField
+      onChange={onChange}
       fullWidth
       InputProps={{
         disableUnderline: true,
