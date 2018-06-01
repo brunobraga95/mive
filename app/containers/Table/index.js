@@ -5,8 +5,10 @@ import { createStructuredSelector } from 'reselect';
 import { fetchCompanyInfo } from 'containers/Company/actions';
 import { makeSelectCompany } from 'containers/Company/selectors';
 import { makeSelectTable } from 'containers/Table/selectors';
-import NavigationButton from 'components/NavigationButtom/NavigationButton';
+import { makeSelectSearch } from 'containers/Menu/selectors';
+import { changeSearchValue } from 'containers/Menu/actions';
 import Menu from 'containers/Menu';
+import Bill from 'containers/Bill';
 import SearchInput from 'components/SearchInput';
 import Loading from 'react-loading-overlay';
 import { changeTableContext } from './actions';
@@ -18,18 +20,21 @@ class Table extends React.PureComponent {
     this.props.fetchCompany(companyId);
   }
   render() {
-    return (
-      <Loading
-        active={this.props.company.isLoading}
-        spinner
-      >
-        <Wrapper>
-          <SearchInput />
-          <Menu />
-          <NavigationButton changeTableContext={this.props.changeTableContext} context={this.props.table.context} />
-        </Wrapper>
-      </Loading>
-    );
+    const { table, searchValue, handleSearchChange } = this.props;
+    if (!table.context) {
+      return (
+        <Loading active={this.props.company.isLoading} spinner>
+          <Wrapper>
+            <SearchInput
+              value={searchValue}
+              handleChange={handleSearchChange}
+            />
+            <Menu />
+          </Wrapper>
+        </Loading>
+      );
+    }
+    return <Bill />;
   }
 }
 
@@ -38,18 +43,21 @@ Table.propTypes = {
   fetchCompany: PropTypes.func,
   company: PropTypes.object,
   table: PropTypes.object,
-  changeTableContext: PropTypes.func,
+  searchValue: PropTypes.string,
+  handleSearchChange: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   company: makeSelectCompany(),
   table: makeSelectTable(),
+  searchValue: makeSelectSearch(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchCompany: (companyId) => dispatch(fetchCompanyInfo(companyId)),
     changeTableContext: (context) => dispatch(changeTableContext(context)),
+    handleSearchChange: (value) => dispatch(changeSearchValue(value)),
   };
 }
 

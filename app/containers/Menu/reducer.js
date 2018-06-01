@@ -2,18 +2,31 @@ import { fromJS } from 'immutable';
 import { handle } from 'redux-pack';
 
 import { FETCH_COMPANY_INFO } from 'containers/Company/constants';
-import { CHANGE_MENU_SECTION } from './constants';
+import {
+  CHANGE_MENU_SECTION,
+  CHANGE_SEARCH_VALUE,
+  ADD_TO_SHOPPING_CART,
+} from './constants';
 
 const initialState = fromJS({
   section: 'porcoes', // TODO change this to featured
   isLoading: true,
   menu: {},
+  search: '',
+  shoppingCart: [],
 });
 
 function companyReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_MENU_SECTION:
       return state.set('section', action.payload);
+    case CHANGE_SEARCH_VALUE:
+      return state.set('search', action.payload);
+    case ADD_TO_SHOPPING_CART:
+      return state.update('shoppingCart', (shoppingCart) => [
+        ...shoppingCart,
+        action.payload,
+      ]);
     case FETCH_COMPANY_INFO:
       return handle(state, action, {
         start: () => state.merge({ isLoading: true }),

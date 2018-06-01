@@ -27,21 +27,17 @@ const Container = styled.div`
 class Landing extends PureComponent {
   goToTable = () => {
     this.props.goToTable('lLfqdnain5twuR69KmYy', 1);
-  }
+  };
   render() {
     return (
       <Wrapper>
-        {/* <div onClick={() => tableLogin('lLfqdnain5twuR69KmYy', 1)}>Acessar</div> */}
         <QRCodeReader />
-        {/* <div onClick={() => addOrder([{ teste: 'adding order', value: 12 }])}>
-          Add Order
-        </div> */}
+
         <Container onClick={this.goToTable}>
           click here to go menu
           <Typography variant="title" gutterBottom>
             Aponte para o QR code da mesa
           </Typography>
-          <img src="../../images/qr-code.png" alt="qr code icon" />
         </Container>
       </Wrapper>
     );
@@ -55,8 +51,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    goToTable: (companyId, tableNumber) => (dispatch(push(`company/${companyId}/table/${tableNumber}`)))
-    // fetchCompany: (companyId) => dispatch(fetchCompanyInfo(companyId)),
+    goToTable: (companyId, tableNumber) =>
+      dispatch(push(`company/${companyId}/table/${tableNumber}`)),
   };
 }
 
