@@ -21,14 +21,8 @@ const makeSelectAllItems = () =>
   });
 
 const makeFilteredMenu = () =>
-  createSelector(
-    makeSelectAllItems(),
-    makeSelectSearch(),
-    makeSelectIsLoading(),
-
-    (allItems, search, isLoading) =>
-      !isLoading &&
-      allItems.filter((item) => slugify(item.name).includes(slugify(search)))
+  createSelector(makeSelectAllItems(), makeSelectSearch(), (allItems, search) =>
+    allItems.filter((item) => slugify(item.name).includes(slugify(search)))
   );
 
 const makeSelectIsLoading = () =>

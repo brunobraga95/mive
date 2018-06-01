@@ -81,3 +81,10 @@ export const MenuWrapper = styled.div`
   max-height: 50vh;
   overflow: auto;
 `;
+
+export const ChooseQuantityWrapper = styled.div`
+  font-family: 'Roboto';
+  text-align: center;
+  padding: ${dimens.defaultHalfSpace}px;
+  position: relative;
+`;

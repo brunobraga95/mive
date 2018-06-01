@@ -13,7 +13,7 @@ import {
   makeFilteredMenu,
   makeSelectSectionItems,
 } from './selectors';
-import { changeMenuSection } from './actions';
+import { changeMenuSection, addToShoppingCart } from './actions';
 
 class Menu extends PureComponent {
   updateSection = (section) => {
@@ -27,6 +27,7 @@ class Menu extends PureComponent {
       isLoading,
       filteredMenu,
       sectionItems,
+      addItem,
     } = this.props;
     return (
       <div>
@@ -34,12 +35,12 @@ class Menu extends PureComponent {
         <Divider />
         {!isLoading && (
           <MenuItems
+            addItem={addItem}
             items={
               searchValue.split('').length > 2
                 ? filteredMenu
                 : sectionItems.dishes
             }
-            isLoading={isLoading}
           />
         )}
       </div>
@@ -54,6 +55,7 @@ Menu.propTypes = {
   isLoading: PropTypes.bool,
   searchValue: PropTypes.string,
   filteredMenu: PropTypes.array,
+  addItem: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -67,6 +69,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     changeMenuSection: (section) => dispatch(changeMenuSection(section)),
+    addItem: (item) => dispatch(addToShoppingCart(item)),
   };
 }
 

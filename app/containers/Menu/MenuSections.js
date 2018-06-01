@@ -10,6 +10,9 @@ const mock = [
   {
     section: 'bebidas',
   },
+  {
+    section: 'lanches',
+  },
 ];
 
 const MenuSections = (props) => (

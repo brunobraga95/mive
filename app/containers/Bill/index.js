@@ -38,7 +38,6 @@ export class Bill extends PureComponent {
     if (orders.items.length)
       return (
         <Wrapper>
-          {console.log(orders)}
           <Header>
             <QuantityCol>Qtd</QuantityCol>
             <ItemCol>Item</ItemCol>
